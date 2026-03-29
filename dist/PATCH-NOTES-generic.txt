@@ -1,0 +1,34 @@
+FIX Bible Generic Patch Notes
+
+v4.6.3-generic (2026-03-29)
+- Removed all venue-specific tag descriptions; tag descriptions are now sourced exclusively from the bundled FIXimate dictionary.
+- Removed Proprietary extension filter button from the legend.
+
+v4.6.2-generic (2026-03-14)
+- Added standard FIX enum/sub-value integration to decoded row details, using the bundled FIX 4.4 dictionary for allowed values and meanings.
+- Multi-value tags such as ExecInst, QuoteCondition, TradeCondition, OrderRestrictions, and Scope now split and validate individual sub-values instead of treating the full field as one opaque value.
+- Uploaded XML dictionaries now preserve enum value sets when they define them, and standard FIX tags can still fall back to bundled enum metadata when they do not.
+
+v4.6.1-generic (2026-03-09)
+- Added a draggable vertical resize grip to the Decoded Fields panel so users can expand or shrink that module without toggling full-panel Expand.
+- Manual decoded panel height now persists during normal re-renders/layout sync, with keyboard resize support and quick reset (Escape or double-click grip).
+
+v4.6.0-generic (2026-03-07)
+- Added LZ4 frame decompression: "Load file" button accepts .lz4 compressed FIX logs and auto-detects compression before parsing.
+- Added "All (N)" tab in multi-message view: selects all messages simultaneously, highlights all message ranges in the input block, and enables aggregate summary.
+- Selecting an individual message tab from the "All" view now deselects aggregate summary automatically.
+- Moved "Load file" button to the left of "Copy" in the input toolbar.
+
+v4.5.0-generic (2026-02-22)
+- Standard FIX 4.4 tag definitions and data types now use a pinned FIXimate snapshot in the generic/default decoding path.
+- Standard FIX 4.4 tags now show source as FIX44 (FIXimate) in decoded output.
+- Removed STP/MDP validation profiles; required-tag validation now uses generic FIX 4.4 rules (or uploaded dictionary profile).
+- Uploaded dictionary mode now falls back to FIXimate for missing standard tag definitions and data types.
+
+v4.5.0-generic (2026-02-21)
+- Added a vendor-neutral FIX Bible variant.
+- Removed vendor-specific branding and references from source-facing UI text and embedded schema text.
+- Renamed non-standard kind labeling to Proprietary extension.
+- Renamed schema directional field usage to sent_by_venue.
+- Hid the FIXTESTER conversion button behind a disabled feature flag while keeping converter code in place.
+- Added parallel generic distribution artifacts (HTML, README, patch notes, ZIP).
