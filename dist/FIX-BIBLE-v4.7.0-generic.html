@@ -84,7 +84,6 @@
       }
 
       .hero-redact {
-        margin-left: auto;
         white-space: nowrap;
       }
 
@@ -107,10 +106,22 @@
       }
 
       .hero p {
-        margin: 4px 0 0;
+        margin: 0;
         color: rgba(232, 237, 245, 0.55);
         font-size: 0.88rem;
         line-height: 1.4;
+      }
+
+      .hero-desc-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .hero-desc-row .hero-redact {
+        margin-left: auto;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .status-row {
@@ -1295,12 +1306,14 @@
       <header class="hero">
         <div class="hero-title-row">
           <h1><span>FIX Bible</span></h1>
+        </div>
+        <div class="hero-desc-row">
+          <p>Paste a FIX message and get a schema-aware decode with redaction and basic validation.</p>
           <label class="toggle hero-redact">
             <input type="checkbox" id="redact-toggle" checked />
             Redaction on
           </label>
         </div>
-        <p>Paste a FIX message and get a schema-aware decode with redaction and basic validation.</p>
         <div class="status-row">
           <div class="pill" id="status-delim" role="status" aria-live="polite">Delimiter: <strong>-</strong></div>
           <div class="pill" id="status-body" role="status" aria-live="polite">BodyLength: <strong>-</strong></div>
