@@ -2,7 +2,7 @@
 
 A single-file browser tool for decoding, validating, and inspecting FIX protocol messages. No install, no server, no data leaves your machine.
 
-**[Download the latest release](dist/FIX-BIBLE-v4.6.3-generic.html)** — open it directly in your browser.
+**[Download the latest release](dist/FIX-BIBLE-v4.7.0-generic.html)** — open it directly in your browser.
 
 ---
 
@@ -31,7 +31,7 @@ FIX Bible defaults to the public FIX 4.4 standard. To decode venue-specific or c
 
 ```bash
 git clone https://github.com/james-holland00/fix-bible.git
-python -m http.server -d web
+python3 -m http.server -d web
 ```
 
 Then open `http://localhost:8000`.
@@ -42,8 +42,7 @@ Packaged single-file HTML releases are in [`dist/`](dist/). Each release is self
 
 | Version | File |
 |---------|------|
-| v4.6.3 | [FIX-BIBLE-v4.6.3-generic.html](dist/FIX-BIBLE-v4.6.3-generic.html) |
-| v4.6.2 | [FIX-BIBLE-v4.6.2-generic.html](dist/FIX-BIBLE-v4.6.2-generic.html) |
+| v4.7.0 | [FIX-BIBLE-v4.7.0-generic.html](dist/FIX-BIBLE-v4.7.0-generic.html) |
 
 See [PATCH-NOTES-generic.txt](dist/PATCH-NOTES-generic.txt) for the full changelog.
 

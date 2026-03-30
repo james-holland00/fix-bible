@@ -1,5 +1,13 @@
 FIX Bible Generic Patch Notes
 
+v4.7.0-generic (2026-03-30)
+- Removed all embedded venue-specific schemas (MDP/STP); decoding now uses only the public FIX 4.4 standard and FIXimate dictionary.
+- Removed all proprietary tag definitions and venue-specific required-tag rules.
+- Validation now uses FIXimate-sourced FIX 4.4 required tags exclusively.
+- Removed Proprietary extension tag classification; non-standard tags now classified as Unknown.
+- Updated sample message to show a realistic trade flow (D -> 8 -> AE) with repeating leg groups.
+- Cleaned up dead venue-specific code paths (STP trade type inference, hedge detection, FXO hints).
+
 v4.6.3-generic (2026-03-29)
 - Removed all venue-specific tag descriptions; tag descriptions are now sourced exclusively from the bundled FIXimate dictionary.
 - Removed Proprietary extension filter button from the legend.
@@ -26,9 +34,6 @@ v4.5.0-generic (2026-02-22)
 - Uploaded dictionary mode now falls back to FIXimate for missing standard tag definitions and data types.
 
 v4.5.0-generic (2026-02-21)
-- Added a vendor-neutral FIX Bible variant.
-- Removed vendor-specific branding and references from source-facing UI text and embedded schema text.
-- Renamed non-standard kind labeling to Proprietary extension.
-- Renamed schema directional field usage to sent_by_venue.
-- Hid the FIXTESTER conversion button behind a disabled feature flag while keeping converter code in place.
-- Added parallel generic distribution artifacts (HTML, README, patch notes, ZIP).
+- Initial vendor-neutral FIX Bible variant.
+- Standard FIX 4.4 definitions only, no embedded venue schemas.
+- Parallel generic distribution artifacts (HTML, README, patch notes, ZIP).
