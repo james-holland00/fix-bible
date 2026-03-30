@@ -4,6 +4,8 @@ A single-file browser tool for decoding, validating, and inspecting FIX protocol
 
 **[Download the latest release](dist/FIX-BIBLE-v4.7.0-generic.html)** — open it directly in your browser.
 
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-☕-yellow?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/jamesholland)
+
 ---
 
 ## What it does
