@@ -72,11 +72,20 @@
 
       .hero {
         display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 18px;
-        margin-bottom: 18px;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .hero-title-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .hero-redact {
+        margin-left: auto;
+        white-space: nowrap;
       }
 
       .hero h1 {
@@ -98,20 +107,19 @@
       }
 
       .hero p {
-        margin: 8px 0 0;
-        color: rgba(232, 237, 245, 0.6);
-        max-width: 520px;
-        line-height: 1.5;
-        font-size: 0.95rem;
+        display: none;
       }
 
       .status-row {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
       }
+      .status-row::-webkit-scrollbar { display: none; }
 
       .status-actions {
         display: inline-flex;
@@ -131,10 +139,13 @@
       }
 
       .status-actions .pill-action {
-        background: linear-gradient(180deg, rgba(255, 214, 120, 0.28), rgba(255, 181, 82, 0.22));
-        border-color: rgba(255, 214, 120, 0.55);
-        color: #fff4dd;
-        box-shadow: inset 0 1px 0 rgba(255, 246, 225, 0.25), 0 1px 6px rgba(8, 12, 18, 0.18);
+        background: linear-gradient(180deg, rgba(107, 184, 255, 0.22), rgba(79, 143, 234, 0.16));
+        border-color: rgba(107, 184, 255, 0.4);
+        color: #a8d4ff;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 6px rgba(8, 12, 18, 0.18);
+        white-space: nowrap;
+        font-size: 0.78rem;
+        padding: 5px 10px;
       }
 
       .status-actions .pill-action:focus-visible {
@@ -152,12 +163,14 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 6px 10px;
+        padding: 5px 10px;
         border-radius: 999px;
-        background: rgba(247, 243, 235, 0.12);
-        border: 1px solid rgba(247, 243, 235, 0.2);
-        color: rgba(247, 243, 235, 0.9);
-        font-size: 0.8rem;
+        background: rgba(247, 243, 235, 0.10);
+        border: 1px solid rgba(247, 243, 235, 0.18);
+        color: rgba(247, 243, 235, 0.85);
+        font-size: 0.78rem;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .pill strong {
@@ -1020,8 +1033,10 @@
         padding: 2px 6px;
         border-radius: 999px;
         font-size: 0.72rem;
-        background: var(--accent-soft);
-        color: var(--accent-ink);
+        background: rgba(79, 143, 234, 0.12);
+        border: 1px solid rgba(79, 143, 234, 0.25);
+        color: #4f8fea;
+        font-weight: 500;
       }
 
       .status-ok {
@@ -1275,22 +1290,21 @@
   <body>
     <div class="app">
       <header class="hero">
-        <div>
+        <div class="hero-title-row">
           <h1><span>FIX Bible</span></h1>
-          <p>Paste a FIX message and get a schema-aware decode with redaction and basic validation.</p>
-        </div>
-        <div class="status-row">
-          <label class="toggle">
+          <label class="toggle hero-redact">
             <input type="checkbox" id="redact-toggle" checked />
             Redaction on
           </label>
+        </div>
+        <div class="status-row">
           <div class="pill" id="status-delim" role="status" aria-live="polite">Delimiter: <strong>-</strong></div>
           <div class="pill" id="status-body" role="status" aria-live="polite">BodyLength: <strong>-</strong></div>
           <div class="pill" id="status-chk" role="status" aria-live="polite">CheckSum: <strong>-</strong></div>
           <div class="pill" id="status-dict" role="status" aria-live="polite">Dictionary: <strong>Default</strong></div>
           <div class="status-actions">
-            <button class="panel-action pill-action" id="upload-dictionary" type="button">Upload custom FIX dictionary</button>
-            <button class="panel-action pill-action" id="clear-dictionary" type="button" disabled>Clear dictionary</button>
+            <button class="panel-action pill-action" id="upload-dictionary" type="button">Upload dictionary</button>
+            <button class="panel-action pill-action" id="clear-dictionary" type="button" disabled>Clear</button>
             <input id="dictionary-file" type="file" accept=".xml,.json,.csv,.tsv,text/xml,application/xml,application/json,text/csv,text/tab-separated-values" class="sr-only" />
             <input id="log-file" type="file" accept=".lz4,.fix,.log,.txt" class="sr-only" />
           </div>
@@ -1704,7 +1718,7 @@ const FIX44_MESSAGE_NAMES = {"0":"Heartbeat","A":"Logon","1":"TestRequest","2":"
       const TOOL_NAME = "FIX Bible";
       const TOOL_VERSION = "v4.7.0";
       const TOOL_SCOPE = "Supports FIX 4.4 with multi-message workflows.";
-      const TOOL_UPDATED = "14 Mar 2026";
+      const TOOL_UPDATED = "30 Mar 2026";
       const legendFilters = Array.from(document.querySelectorAll(".legend-filter"));
       const decodedColumnFilterControls = [
         {
@@ -6910,7 +6924,9 @@ const FIX44_MESSAGE_NAMES = {"0":"Heartbeat","A":"Logon","1":"TestRequest","2":"
         searchInput.value = "";
         state.filter = "";
         persistInputValue(raw);
+        const wasAllMessages = state.allMessages;
         parseAndRender();
+        if (wasAllMessages) activateAllMessages();
       });
 
       uploadDictionaryBtn.addEventListener("click", () => {
