@@ -2,7 +2,7 @@
 
 A single-file browser tool for decoding, validating, and inspecting FIX protocol messages. No install, no server, no data leaves your machine.
 
-**[Download the latest release](dist/FIX-BIBLE-v4.7.0-generic.html)** — open it directly in your browser.
+**[Download the latest release](dist/FIX-BIBLE-v4.8.0-generic.html)** — open it directly in your browser.
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-☕-yellow?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/jamesholland)
 
@@ -14,12 +14,14 @@ Paste any FIX message (or a full log block of many messages) and FIX Bible decod
 
 **Core features:**
 
+- Spine layout — raw FIX input and decoded fields are the always-visible focus; Find, Summary, Validation, and Timeline tuck into a collapsible right-side icon rail
+- Timeline view sits above decoded fields and stretches the full page width when opened
 - Auto-detects the delimiter (`SOH`, `|`, `;`) and strips extra text around the message
-- Multi-message support — parses a full log block and gives each message its own tab, plus an aggregate "All" view
+- Multi-message support — parses a full log block and gives each message its own tab, plus an aggregate "All" view that aggregates validation and highlights every timeline row
 - Decoded Fields panel with tag number, name, value, data type, and description
 - Repeating groups detected and displayed separately
-- Validation — missing required tags, unknown tags, basic datatype checks
-- Find — multi-token search across tag numbers, names, and values (supports `tag=value`, `=value`, or free text)
+- Validation — missing required tags, unknown tags, basic datatype checks; entries default to expanded
+- Find — multi-token search across tag numbers, names, and values; exact tag/name match returns the full definition plus up to 4 compact related tags
 - Redaction — sensitive tags (password, raw data, etc.) hidden by default
 - Export — Copy TSV, Download CSV, Download JSON, Export Bundle ZIP (all messages, per-message FIX/CSV/JSON + manifest)
 - LZ4 decompression — load `.lz4` compressed FIX log files directly
@@ -44,6 +46,7 @@ Packaged single-file HTML releases are in [`dist/`](dist/). Each release is self
 
 | Version | File |
 |---------|------|
+| v4.8.0 | [FIX-BIBLE-v4.8.0-generic.html](dist/FIX-BIBLE-v4.8.0-generic.html) |
 | v4.7.0 | [FIX-BIBLE-v4.7.0-generic.html](dist/FIX-BIBLE-v4.7.0-generic.html) |
 
 See [PATCH-NOTES-generic.txt](dist/PATCH-NOTES-generic.txt) for the full changelog.

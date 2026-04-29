@@ -1,5 +1,17 @@
 FIX Bible Generic Patch Notes
 
+v4.8.0-generic (2026-04-29)
+- Redesigned layout: raw FIX input and decoded fields form a fixed spine; Find, Summary, Validation, and Timeline move into a collapsible sidebar icon rail on the right.
+- Timeline relocated to the spine and stretches the full width above decoded fields when opened.
+- Sidebar cards are independently toggled via their rail icon; redundant inline close buttons removed.
+- Sidebar open/closed state persists across page reloads via localStorage; Summary opens by default after a message is parsed.
+- Validation and Timeline rail icons show live badge counts; Validation entries now default to expanded.
+- Dictionary lookup returns the exact tag or name match in full, plus up to 4 compact related tags under a "Related tags" heading.
+- All-messages tab now aggregates validation badges across messages (issues prefixed with [#N MsgType]) and highlights every timeline row.
+- Validation help tooltip width capped to fit inside its sidebar card; sidebar cards' overflow set to visible so the tooltip is no longer clipped.
+- Sample message updated to a realistic spot FX flow (NewOrderSingle -> ExecutionReport -> ExecutionAck) with passing BodyLength and CheckSum on all three messages.
+- BN (ExecutionAck) MsgType added to the FIXimate enum dictionary so tag 35 resolves cleanly.
+
 v4.7.0-generic (2026-03-30)
 - Removed all embedded venue-specific schemas (MDP/STP); decoding now uses only the public FIX 4.4 standard and FIXimate dictionary.
 - Removed all proprietary tag definitions and venue-specific required-tag rules.
